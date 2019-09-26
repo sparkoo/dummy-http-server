@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 	"os"
 )
@@ -18,5 +19,8 @@ func main() {
 	http.HandleFunc(path, func(writer http.ResponseWriter, request *http.Request) {
 		_, _ = writer.Write([]byte("Hello World!"))
 	})
-	_ = http.ListenAndServe(port, nil)
+	if err := http.ListenAndServe(port, nil); err != nil {
+		panic(err)
+	}
+	fmt.Println("Done ...")
 }
