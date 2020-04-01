@@ -20,6 +20,7 @@ func main() {
 		fmt.Println("hit")
 		_, _ = writer.Write([]byte("Hello World! " + port + " " + path))
 	})
+	fmt.Println("Listening ...")
 	if err := http.ListenAndServe(port, nil); err != nil {
 		panic(err)
 	}
