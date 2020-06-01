@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>Hello {{ .Name }}</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+<p>server cookies
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>name</th><th>value</th><th>path</th>
+    </tr>
+    {{range .Cookies}}
+      <tr><td>{{.Name}}</td><td>{{.Value}}</td><td>{{.Path}}</td></tr>
+    {{end}}
+  </table>
+</p>
+<p>client cookies
+<table border="1" cellpadding="5">
+  <div id="clientcookies"></div>
+</table>
+</p>
+<script type="text/javascript">
+  document.getElementById("clientcookies").textContent = document.cookie;
+
+  function WriteCookie() {
+    if (document.myform.customer.value == "") {
+      alert("Enter some value!");
+      return;
+    }
+    let cookievalue = escape(document.myform.customer.value) + ";";
+    document.cookie = "name=" + cookievalue + ";path=/cookie";
+    // alert("Setting Cookies : " + "name=" + cookievalue);
+  }
+</script>
+<form name="myform" action="">
+  Enter name: <input type="text" name="customer"/>
+  <input type="button" value="Set Cookie" onclick="WriteCookie();"/>
+</form>
+<form name="someRequest">
+  <input type="submit"/>
+</form>
+</body>
+</html>
